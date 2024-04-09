@@ -22,10 +22,6 @@ public class Price {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "product_id")
-	private Product productid ;
-	
 	@Column(precision=10, scale=2)
 	private BigDecimal price;
 	
@@ -43,14 +39,6 @@ public class Price {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Product getProductid() {
-		return productid;
-	}
-
-	public void setProductid(Product productid) {
-		this.productid = productid;
 	}
 
 	public BigDecimal getPrice() {

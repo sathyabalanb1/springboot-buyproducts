@@ -5,19 +5,19 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 
 import com.buyproducts.demo.entity.Customer;
 import com.buyproducts.demo.repository.CustomerRepository;
-
+@Component
 public class CustomUserDetailsService implements UserDetailsService{
 	
-	@Autowired
-	private  CustomerRepository repository;
+	@Autowired(required=true)
+	private  CustomerRepository customerrepository;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		Customer cusdeal = repository.findByEmail(username);
+				Customer cusdeal = customerrepository.findByEmail(username);
 		
 		if (cusdeal == null) {
 			throw new UsernameNotFoundException("user not found");

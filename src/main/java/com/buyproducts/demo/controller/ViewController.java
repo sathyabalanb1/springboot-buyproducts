@@ -14,7 +14,7 @@ public class ViewController {
 	}
 	
 	@GetMapping("/loginform")
-		public String displayHomepage()
+	public String displayHomepage()
 	{
 		return "/authentication/loginform.jsp";
 		//return "hi";
@@ -31,13 +31,18 @@ public class ViewController {
 	{
 		return "dealer/dealerfrontpage.jsp";
 	}
+	
 	@GetMapping("/home")
-	@ResponseBody
 	public String home()
 	{
 		return "home";
 	}
 	
+	@GetMapping("/createproductform")
+	public String displayCreateProductForm()
+	{
+		return "product/createproduct.jsp";
+	}
 	
 
 }

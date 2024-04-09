@@ -5,11 +5,14 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -29,7 +32,15 @@ public class Product {
     
     @UpdateTimestamp
     @Column(columnDefinition = "TIMESTAMP",insertable = false)
-    private LocalDateTime updatetime ;
+    private LocalDateTime updatetime;
+    
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "price_id")
+	private Price priceid ;
+    
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "inventory_id")
+	private Inventory inventoryid ;
 
 	public int getId() {
 		return id;
@@ -69,6 +80,22 @@ public class Product {
 
 	public void setUpdatetime(LocalDateTime updatetime) {
 		this.updatetime = updatetime;
+	}
+
+	public Price getPriceid() {
+		return priceid;
+	}
+
+	public void setPriceid(Price priceid) {
+		this.priceid = priceid;
+	}
+
+	public Inventory getInventoryid() {
+		return inventoryid;
+	}
+
+	public void setInventoryid(Inventory inventoryid) {
+		this.inventoryid = inventoryid;
 	}
     
     

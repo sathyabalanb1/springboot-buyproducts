@@ -46,28 +46,17 @@ public class WebSecurityConfig {
         return authProvider;
     }
 	
-	/*
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		  http.csrf().disable().authorizeHttpRequests(request -> request
-				        .requestMatchers("/authentication/**").permitAll()
-						.requestMatchers("/registerform", "/insertcustomer", "/loginform", "registerform").permitAll()
-						.requestMatchers("/logout").permitAll().anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/loginform").loginProcessingUrl("/home").permitAll())
-				.logout(logout -> logout.invalidateHttpSession(true).clearAuthentication(true)
-						.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index")
-						.permitAll());
-		return http.build();
-	}
-	*/
 	
+	/*
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
 		http.authenticationProvider(authenticationProvider());
 		  http.csrf().disable().authorizeHttpRequests(request -> request
 				        .requestMatchers("/authentication/**","/login").permitAll()
-						.requestMatchers("/registerform", "/insertcustomer", "/loginform", "registerform").permitAll()
+						.requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
+						.requestMatchers("/customerfrontpage","/customer/**").hasAuthority("Customer")
+						.requestMatchers("/dealerfrontpage","/dealer/**").hasAuthority("Dealer")
 						.requestMatchers("/logout").permitAll().anyRequest().authenticated())
 				.formLogin(form -> form.loginPage("/loginform").loginProcessingUrl("/login")
 						.defaultSuccessUrl("/success")
@@ -77,4 +66,64 @@ public class WebSecurityConfig {
 						.permitAll());
 		return http.build();
 	}
+	*/
+	
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	    http
+	        .csrf().disable()
+	        .authorizeHttpRequests(request -> request
+	            .requestMatchers("/authentication/**","/login","/customer/**").permitAll()
+	            .requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
+	            .requestMatchers("/customer/**").hasAuthority("Customer")
+	            .requestMatchers("/dealerfrontpage","/createproductform","/dealer/**").hasAuthority("Dealer")
+	            .requestMatchers("/logout").permitAll()
+	            .anyRequest().authenticated()
+	        )
+	        .formLogin(form -> form
+	            .loginPage("/loginform")
+	            .loginProcessingUrl("/login")
+	            .defaultSuccessUrl("/success") // Update the default success URL
+	            .permitAll()
+	        )
+	        .logout(logout -> logout
+	            .invalidateHttpSession(true)
+	            .clearAuthentication(true)
+	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	            .logoutSuccessUrl("/loginform")
+	            .permitAll()
+	        );
+	    return http.build();
+	}
+
+	
+	
+//	@Bean
+//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//	    http
+//	        .csrf().disable()
+//	        .authorizeHttpRequests(request -> request
+//	            .requestMatchers("/authentication/**", "/login").permitAll()
+//	            .requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
+//	            .requestMatchers("/customerfrontpage", "/customer/**").hasAuthority("Customer")
+//	            .requestMatchers("/dealerfrontpage", "/dealer/**").hasAuthority("Dealer")
+//	            .requestMatchers("/logout").permitAll()
+//	            .anyRequest().authenticated()
+//	        )
+//	        .formLogin(form -> form
+//	            .loginPage("/loginform")
+//	            .loginProcessingUrl("/login")
+//	            .defaultSuccessUrl("/success")
+//	            .permitAll()
+//	        )
+//	        .logout(logout -> logout
+//	            .invalidateHttpSession(true)
+//	            .clearAuthentication(true)
+//	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//	            .logoutSuccessUrl("/loginform")
+//	            .permitAll()
+//	        );
+//	    return http.build();
+//	}
+
 }

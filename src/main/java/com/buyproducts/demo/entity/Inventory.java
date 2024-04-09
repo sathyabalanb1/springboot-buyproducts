@@ -21,10 +21,6 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "product_id")
-	private Product productid ;
-	
 	private int quantity;
 	
 	@CreationTimestamp
@@ -41,14 +37,6 @@ public class Inventory {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Product getProductid() {
-		return productid;
-	}
-
-	public void setProductid(Product productid) {
-		this.productid = productid;
 	}
 
 	public int getQuantity() {

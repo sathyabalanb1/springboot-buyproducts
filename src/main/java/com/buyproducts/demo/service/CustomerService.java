@@ -21,6 +21,7 @@ public class CustomerService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	/*
 	public String addCustomer(Customer cus)
 	{
 		Role role = rolerepository.findByRolename("Customer").get(0);
@@ -37,6 +38,27 @@ public class CustomerService {
 		   customerrepository.save(cus);
 
 			return "User Registered Successfully";
+
+		}
+		
+	}
+	*/
+	public Customer addCustomer(Customer cus)
+	{
+		Role role = rolerepository.findByRolename("Customer").get(0);
+		cus.setRoleid(role);
+		
+		String inputemail = cus.getEmail();
+		Customer existingcustomer = customerrepository.findByEmail(inputemail);
+		
+		if (existingcustomer != null) {
+			return null; 
+		} else { 	
+		 String encryptedpassword = passwordEncoder.encode(cus.getPassword());
+		 cus.setPassword(encryptedpassword);
+		 Customer c = customerrepository.save(cus);
+
+			return c;
 
 		}
 		
