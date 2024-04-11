@@ -25,7 +25,6 @@
 			</tr>
 		</thead>
 			<tbody>
-
 				<c:forEach var="temp" items="${products}" varStatus="loop">
 				<tr>
 					<td>${loop.index+1}</td>
@@ -35,8 +34,6 @@
 				</tr>
 				</c:forEach>
 			</tbody>
-
-
 		</table>
 	</div>
 

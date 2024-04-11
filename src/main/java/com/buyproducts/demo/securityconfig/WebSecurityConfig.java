@@ -47,26 +47,7 @@ public class WebSecurityConfig {
     }
 	
 	
-	/*
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		
-		http.authenticationProvider(authenticationProvider());
-		  http.csrf().disable().authorizeHttpRequests(request -> request
-				        .requestMatchers("/authentication/**","/login").permitAll()
-						.requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
-						.requestMatchers("/customerfrontpage","/customer/**").hasAuthority("Customer")
-						.requestMatchers("/dealerfrontpage","/dealer/**").hasAuthority("Dealer")
-						.requestMatchers("/logout").permitAll().anyRequest().authenticated())
-				.formLogin(form -> form.loginPage("/loginform").loginProcessingUrl("/login")
-						.defaultSuccessUrl("/success")
-						.permitAll())
-				.logout(logout -> logout.invalidateHttpSession(true).clearAuthentication(true)
-						.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/loginform")
-						.permitAll());
-		return http.build();
-	}
-	*/
+	
 	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -75,8 +56,8 @@ public class WebSecurityConfig {
 	        .authorizeHttpRequests(request -> request
 	            .requestMatchers("/authentication/**","/login","/customer/**").permitAll()
 	            .requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
-	            .requestMatchers("/customer/**").hasAuthority("Customer")
-	            .requestMatchers("/dealerfrontpage","/createproductform","/dealer/**").hasAuthority("Dealer")
+	            .requestMatchers("/customer/**","/makeorder").hasAuthority("Customer")
+	            .requestMatchers("/dealerfrontpage","/createproductform","/dealer/**","/makeorder").hasAuthority("Dealer")
 	            .requestMatchers("/logout").permitAll()
 	            .anyRequest().authenticated()
 	        )

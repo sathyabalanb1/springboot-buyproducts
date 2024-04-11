@@ -34,17 +34,12 @@ public class ProductController {
 		
 	}
 	
+	
+	
 	@GetMapping("/productlist")
 	public ModelAndView listProducts ()
 	{
-		System.out.println("listProducts method");
 		ModelAndView model = new ModelAndView();
-		
-	//	List<Object[]>prod = productservice.getProducts();
-		
-	//	List<Product>prod = productservice.getProducts();
-		
-		//System.out.println(prod.get(0).length);
 		
 		List<Product>products = productservice.getProducts();
 		
@@ -53,5 +48,8 @@ public class ProductController {
 		
 		return model;
 	}
+	
+	
+	
 
 }

@@ -64,6 +64,11 @@ public class CustomerService {
 		
 	}
 	
+	public Customer fetchCustomerDetails(String email)
+	{
+		return customerrepository.findByEmail(email);
+	}
+	
 	
 
 }

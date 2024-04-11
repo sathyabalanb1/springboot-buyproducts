@@ -15,18 +15,21 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Orderplacement {
+public class Orderedproducts {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "customer_id")
-	private Customer customerid ;
+    @JoinColumn(name = "order_id")
+	private Orderplacement orderid ;
 	
-	@Column(name = "status", nullable = false, columnDefinition = "boolean default false")
-	private boolean enabled = true;
+	@ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "product_id")
+	private Product productid ;
+	
+	private int quantity;
 	
 	@CreationTimestamp
     @Column(columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP ")
@@ -44,20 +47,28 @@ public class Orderplacement {
 		this.id = id;
 	}
 
-	public Customer getCustomerid() {
-		return customerid;
+	public Orderplacement getOrderid() {
+		return orderid;
 	}
 
-	public void setCustomerid(Customer customerid) {
-		this.customerid = customerid;
+	public void setOrderid(Orderplacement orderid) {
+		this.orderid = orderid;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public Product getProductid() {
+		return productid;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setProductid(Product productid) {
+		this.productid = productid;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public LocalDateTime getCreationtime() {
