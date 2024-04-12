@@ -14,6 +14,11 @@
 <title>Make Order</title>
 </head>
 <body>
+<span class="error" id="requiredquantityerror" style="color:red;"></span>
+
+<span class="error" id="ordersuccessmessage" style="color:red;"></span>							
+							
+
 <div class="container mt-4">
 
 <form name="myForm" id="myForm" onsubmit="submitForm(event)">
@@ -35,12 +40,12 @@
 					<td> ${loop.index+1}</td>
 					<td><input name="productname_${temp.id}" value="${temp.productname}" readonly></td>
 					<td><input name="productprice_${temp.id}" value="${temp.getPriceid().getPrice()}" readonly></td>		
-					<td><input name="productquantity_${temp.id}" value="${temp.getInventoryid().getQuantity()}" readonly></td>
+					<td><input name="availablequantity" value="${temp.getInventoryid().getQuantity()}" readonly></td>
 					<td>
-					  <input type="number" id="quantity_${temp.id}" name="quantity_${temp.id}" min="1" max="50"> 
+					  <input type="number" id="quantity_${temp.id}" name="productquantity"  min="1" max="50"> 
 					</td>
 					<td>
-					<input type="checkbox" name="product_${temp.id}" id="product_${temp.id}" value="${temp.id}">
+					<input type="checkbox" name="productid" id="product_${temp.id}" value="${temp.id}">
 					</td>
 					<td><input type="hidden" name="customerid" value="${customerid}" readonly></td>
 				</tr>

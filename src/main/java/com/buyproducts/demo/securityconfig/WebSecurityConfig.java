@@ -54,7 +54,7 @@ public class WebSecurityConfig {
 	    http
 	        .csrf().disable()
 	        .authorizeHttpRequests(request -> request
-	            .requestMatchers("/authentication/**","/login","/customer/**").permitAll()
+	            .requestMatchers("/authentication/**","/login","/customer/**","/makeorder").permitAll()
 	            .requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
 	            .requestMatchers("/customer/**","/makeorder").hasAuthority("Customer")
 	            .requestMatchers("/dealerfrontpage","/createproductform","/dealer/**","/makeorder").hasAuthority("Dealer")

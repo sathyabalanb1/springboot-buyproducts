@@ -10,7 +10,7 @@ public class ProductData {
 	
 	private BigDecimal productprice;
 	
-	private int productquantity;
+	private int requiredquantity;
 	
 	private int customerid;
 
@@ -36,15 +36,7 @@ public class ProductData {
 
 	public void setProductprice(BigDecimal productprice) {
 		this.productprice = productprice;
-	}
-
-	public int getProductquantity() {
-		return productquantity;
-	}
-
-	public void setProductquantity(int productquantity) {
-		this.productquantity = productquantity;
-	}
+	}	
 
 	public int getCustomerid() {
 		return customerid;
@@ -52,6 +44,14 @@ public class ProductData {
 
 	public void setCustomerid(int customerid) {
 		this.customerid = customerid;
+	}
+
+	public int getRequiredquantity() {
+		return requiredquantity;
+	}
+
+	public void setRequiredquantity(int requiredquantity) {
+		this.requiredquantity = requiredquantity;
 	}
 
 	
