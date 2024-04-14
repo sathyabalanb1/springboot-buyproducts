@@ -57,7 +57,7 @@ public class WebSecurityConfig {
 	            .requestMatchers("/authentication/**","/login","/customer/**","/makeorder").permitAll()
 	            .requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
 	            .requestMatchers("/customer/**","/makeorder").hasAuthority("Customer")
-	            .requestMatchers("/dealerfrontpage","/createproductform","/dealer/**","/makeorder").hasAuthority("Dealer")
+	            .requestMatchers("/dealerfrontpage","/createproductform","/dealer/**","/makeorder","/orderdetails").hasAuthority("Dealer")
 	            .requestMatchers("/logout").permitAll()
 	            .anyRequest().authenticated()
 	        )

@@ -69,7 +69,46 @@ public class OrderService {
 		
 		orderedproductsrepository.save(orderedproducts);
 	}
+	/*
+	public List<Orderedproducts> getOrderedProducts()
+	{
+		 return orderedproductsrepository.findAllByOrderByIdDesc();
+	}
+	*/
+	public List<Orderplacement> getOrderedProducts()
+	{
+		return orderplacementrepository.findAllByOrderByIdDesc();
+	}
 	
+	public List<Orderedproducts> getOrderedProductsByOrderId(int orderid)
+	{
+		Orderplacement order = orderplacementrepository.findById(orderid).orElse(null);
+		return orderedproductsrepository.findByOrderid(order);
+	}
+	
+	/*
+	public List<Orderedproducts> getOrderedProductsByOrderId(int orderid)
+	{
+		
+		Orderplacement order = orderplacementrepository.findById(orderid).orElse(null);
+		return orderedproductsrepository.findByOrderid(order);
+	}
+	*/
+	
+	public void processOrderApproval(int orderid)
+	{
+		Orderplacement order = orderplacementrepository.findById(orderid).orElse(null);
+		order.setEnabled(true);
+		orderplacementrepository.save(order);
+	}
+	
+	public List<Orderplacement> getApprovedOrders()
+	{
+		List<Orderplacement>approvedorders = orderplacementrepository.findApprovedOrders();
+		System.out.println(approvedorders.size());
+		System.out.println("sathyadev ips");
+		return approvedorders;
+	}
 	
 
 }

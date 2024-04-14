@@ -26,7 +26,7 @@ public class Orderplacement {
 	private Customer customerid ;
 	
 	@Column(name = "status", nullable = false, columnDefinition = "boolean default false")
-	private boolean enabled = true;
+	private boolean enabled = false;
 	
 	@CreationTimestamp
     @Column(columnDefinition = "TIMESTAMP default CURRENT_TIMESTAMP ")

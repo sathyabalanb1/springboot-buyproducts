@@ -94,6 +94,7 @@ $(document).ready(function () {
          
         
         var selectedProducts = [];
+        var isValid = true;
         
         $('input[type="checkbox"]:checked').each(function() {
 			
@@ -103,10 +104,16 @@ $(document).ready(function () {
             if(requiredquantity == "")
             {
             	document.getElementById("requiredquantityerror").innerHTML = "Please Select the Required Quantity";
+				isValid=false;
             	return false;
             }
 
 	});
+	
+	if(!isValid)
+	{
+		return false;
+	}
         $('input[type="checkbox"]:checked').each(function() {         
             var $row = $(this).closest('tr');
             var productData = {
@@ -137,10 +144,7 @@ $(document).ready(function () {
             success: function(response) {
                 // Handle successful response
                 document.getElementById("ordersuccessmessage").innerHTML = "Order Placed Successfully";
-             //   alert(response);
-             //   console.log("beautyful,excellent");
-             //   console.log("ksksksksksksk");
-             //   console.log('Success:', response);
+             
             },
             error: function(xhr, status, error) {
                 // Handle error
