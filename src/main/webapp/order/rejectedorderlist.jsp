@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,14 +9,14 @@
 <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
 
 <meta charset="UTF-8">
-<title>Approved Order List</title>
+<title>Rejected Order List</title>
 </head>
 <body>
 <%@include file="../headerfooter/header.jsp"%>
 
 <div class="container mt-4">
 		<table class="table table-primary">
-			<caption>Approved Order List</caption>
+			<caption>Rejected Order List</caption>
 
 			<thead class="thead-dark">
 				<tr>
@@ -29,7 +28,7 @@
 			</thead>
 			<tbody>
 
-				<c:forEach var="temp" items="${approveditems}" varStatus="loop">
+				<c:forEach var="temp" items="${rejecteditems}" varStatus="loop">
 					<c:set value="${temp.getCreationtime()}" var="dateString" />
 					<fmt:parseDate value="${dateString}" var="dateObject" pattern="yyyy-MM-dd" />
 					<tr>

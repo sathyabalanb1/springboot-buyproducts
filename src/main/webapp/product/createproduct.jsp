@@ -9,6 +9,8 @@
 <title>Create Product</title>
 </head>
 <body>
+<%@include file="../headerfooter/header.jsp"%>
+
 <div class="container my-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
@@ -42,6 +44,7 @@
 			</div>
 		</div>
 	</div>
+<%@include file="../headerfooter/footer.jsp"%>
 
 </body>
 <script src="./javascriptfiles/Productformvalidation.js"></script>

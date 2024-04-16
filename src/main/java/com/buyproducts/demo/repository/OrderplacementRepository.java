@@ -16,5 +16,11 @@ public interface OrderplacementRepository extends JpaRepository<Orderplacement,I
 	
 	@Query(value="select * from orderplacement where status=true ORDER By id desc", nativeQuery=true)
 	public List<Orderplacement> findApprovedOrders();
+	
+	@Query(value="select * from orderplacement where status=false AND updatetime IS NULL ORDER By id desc", nativeQuery=true)
+	public List<Orderplacement> findWaitingOrders();
+	
+	@Query(value="select * from orderplacement where status=false AND updatetime IS NOT NULL ORDER By id desc", nativeQuery=true)
+	public List<Orderplacement> findRejectedOrders();
 
 }

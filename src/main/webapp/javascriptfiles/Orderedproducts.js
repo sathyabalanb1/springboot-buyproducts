@@ -96,6 +96,15 @@ $(document).ready(function () {
         var selectedProducts = [];
         var isValid = true;
         
+        var checkedCount = $('input[type="checkbox"]:checked').length;
+        
+        if (checkedCount === 0) {
+    // No checkboxes are checked
+    		document.getElementById("emptycheckboxerror").innerHTML = "Please Choose a Product";
+			isValid=false;
+            return false;
+}
+        
         $('input[type="checkbox"]:checked').each(function() {
 			
 			var $row = $(this).closest('tr');

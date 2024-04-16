@@ -1,5 +1,8 @@
 package com.buyproducts.demo.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,12 +105,36 @@ public class OrderService {
 		orderplacementrepository.save(order);
 	}
 	
+	public void processOrderDisApproval(int orderid)
+	{
+		Orderplacement order = orderplacementrepository.findById(orderid).orElse(null);
+		ZoneId zoneId = ZoneId.of("Asia/Kolkata");
+        
+        ZonedDateTime currentDateTime = ZonedDateTime.now(zoneId);
+        
+		//order.setEnabled(false);
+        
+        order.setUpdatetime(LocalDateTime.now());
+		orderplacementrepository.save(order);
+	}
+	
 	public List<Orderplacement> getApprovedOrders()
 	{
 		List<Orderplacement>approvedorders = orderplacementrepository.findApprovedOrders();
-		System.out.println(approvedorders.size());
-		System.out.println("sathyadev ips");
+		
 		return approvedorders;
+	}
+	
+	public List<Orderplacement> getWaitingOrders()
+	{
+		List<Orderplacement>waitingorders = orderplacementrepository.findWaitingOrders();
+		return waitingorders;
+	}
+	
+	public List<Orderplacement> getRejectedOrders()
+	{
+		List<Orderplacement>rejectedorders = orderplacementrepository.findRejectedOrders();
+		return rejectedorders;
 	}
 	
 

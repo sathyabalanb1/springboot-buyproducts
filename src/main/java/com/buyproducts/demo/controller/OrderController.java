@@ -61,6 +61,15 @@ public class OrderController {
 			
 	}
 	
+	@GetMapping("/disapproveorder")
+	public ModelAndView makeOrderDisApproval(@RequestParam("oid") int orderid)
+	{	
+		orderservice.processOrderDisApproval(orderid);
+		
+		return new ModelAndView("redirect:/orderdetails");
+			
+	}
+	
 	
 
 }

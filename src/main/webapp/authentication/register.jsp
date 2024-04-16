@@ -16,6 +16,7 @@
 <p>You have successfully registered</p>
 </c:if>
 
+<%@include file="../headerfooter/header.jsp"%>
 
 
 <div class="container my-5">
@@ -54,6 +55,7 @@
 			</div>
 		</div>
 	</div>
+<%@include file="../headerfooter/footer.jsp"%>
 
 </body>
 <script src="./javascriptfiles/Registerformvalidation.js"></script>

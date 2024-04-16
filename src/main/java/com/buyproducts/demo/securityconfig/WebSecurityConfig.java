@@ -47,16 +47,14 @@ public class WebSecurityConfig {
     }
 	
 	
-	
-	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    http
 	        .csrf().disable()
 	        .authorizeHttpRequests(request -> request
-	            .requestMatchers("/authentication/**","/login","/customer/**","/makeorder").permitAll()
-	            .requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
-	            .requestMatchers("/customer/**","/makeorder").hasAuthority("Customer")
+	            .requestMatchers("/authentication/**","/login","/customer/**","/images/**","/css/**","/javascriptfiles/**","/registerform").permitAll()
+	            .requestMatchers("/insertcustomer", "/loginform", "/registerform").permitAll()
+	            .requestMatchers("/customer/**","/makeorder","/displayorderplacementform").hasAuthority("Customer")
 	            .requestMatchers("/dealerfrontpage","/createproductform","/dealer/**","/makeorder","/orderdetails").hasAuthority("Dealer")
 	            .requestMatchers("/logout").permitAll()
 	            .anyRequest().authenticated()
@@ -76,35 +74,6 @@ public class WebSecurityConfig {
 	        );
 	    return http.build();
 	}
-
 	
-	
-//	@Bean
-//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//	    http
-//	        .csrf().disable()
-//	        .authorizeHttpRequests(request -> request
-//	            .requestMatchers("/authentication/**", "/login").permitAll()
-//	            .requestMatchers("/registerform", "/insertcustomer", "/loginform", "/registerform").permitAll()
-//	            .requestMatchers("/customerfrontpage", "/customer/**").hasAuthority("Customer")
-//	            .requestMatchers("/dealerfrontpage", "/dealer/**").hasAuthority("Dealer")
-//	            .requestMatchers("/logout").permitAll()
-//	            .anyRequest().authenticated()
-//	        )
-//	        .formLogin(form -> form
-//	            .loginPage("/loginform")
-//	            .loginProcessingUrl("/login")
-//	            .defaultSuccessUrl("/success")
-//	            .permitAll()
-//	        )
-//	        .logout(logout -> logout
-//	            .invalidateHttpSession(true)
-//	            .clearAuthentication(true)
-//	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//	            .logoutSuccessUrl("/loginform")
-//	            .permitAll()
-//	        );
-//	    return http.build();
-//	}
 
 }

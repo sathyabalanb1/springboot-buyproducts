@@ -9,9 +9,10 @@
 <link href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"
 	rel="stylesheet">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Product List</title>
 </head>
 <body>
+<%@include file="../headerfooter/header.jsp"%>
 <div class="container mt-4">
 		<table class="table table-primary">
 		<caption>Products List</caption>
@@ -36,6 +37,7 @@
 			</tbody>
 		</table>
 	</div>
+<%@include file="../headerfooter/footer.jsp"%>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>

@@ -15,6 +15,7 @@
 		<p style="color: red;">Username or Password May be Incorrect</p>
 	</c:if>
 	
+<%@include file="../headerfooter/header.jsp"%>
 
 
 	<div class="container my-5">
@@ -45,6 +46,8 @@
 			</div>
 		</div>
 	</div>
+	<%@include file="../headerfooter/footer.jsp"%>
+	
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

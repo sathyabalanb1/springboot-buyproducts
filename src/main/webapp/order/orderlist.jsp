@@ -14,6 +14,8 @@
 <title>Order List</title>
 </head>
 <body>
+<%@include file="../headerfooter/header.jsp"%>
+
 <div class="container mt-4">
 		<table class="table table-primary">
 			<caption>Order List</caption>
@@ -43,6 +45,7 @@
 
 		</table>
 	</div>
+<%@include file="../headerfooter/footer.jsp"%>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>

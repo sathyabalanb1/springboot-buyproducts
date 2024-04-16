@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,16 +34,54 @@ public class ViewController {
 	OrderService orderservice;
 	
 	@GetMapping("/registerform")
-	public String displayCustomerRegisterForm()
+	public ModelAndView displayCustomerRegisterForm()
 	{
-		return "/authentication/register.jsp";
+		ModelAndView model = new ModelAndView();
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			model.setViewName("authentication/register.jsp");
+			return model;
+		}
+		else
+		{
+			if(authentication.getAuthorities().stream().anyMatch(auth ->auth.getAuthority().equals("Dealer")))
+			{
+				return new ModelAndView("redirect:/orderdetails");
+			}
+			else
+			{
+				return new ModelAndView("redirect:/displayorderplacementform");
+			}
+		}
+		
+	//	return "/authentication/register.jsp";
 	}
 	
 	@GetMapping("/loginform")
-	public String displayHomepage()
+	public ModelAndView displayLoginform()
 	{
-		return "/authentication/loginform.jsp";
-		//return "hi";
+		ModelAndView model = new ModelAndView();
+		
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		
+		if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+			model.setViewName("authentication/loginform.jsp");
+			return model;
+		}
+		else
+		{
+			if(authentication.getAuthorities().stream().anyMatch(auth ->auth.getAuthority().equals("Dealer")))
+			{
+				return new ModelAndView("redirect:/orderdetails");
+			}
+			else
+			{
+				return new ModelAndView("redirect:/displayorderplacementform");
+			}
+		}
+		//return "/authentication/loginform.jsp";
 	}
 	
 	@GetMapping("/customerfrontpage")
@@ -154,6 +195,28 @@ public class ViewController {
 		
 		model.addObject("approveditems", approvedorders);
 		model.setViewName("order/approvedorderlist.jsp");
+		return model;
+	}
+	
+	@GetMapping("/waitinglist")
+	public ModelAndView displayWaitingOrders()
+	{
+		ModelAndView model = new ModelAndView();
+		List<Orderplacement>waitingorders = orderservice.getWaitingOrders();
+		
+		model.addObject("waitingitems", waitingorders);
+		model.setViewName("order/waitingorderlist.jsp");
+		return model;
+	}
+	
+	@GetMapping("/rejectedlist")
+	public ModelAndView displayRejectedOrders()
+	{
+		ModelAndView model = new ModelAndView();
+		List<Orderplacement>rejectedorders = orderservice.getRejectedOrders();
+		
+		model.addObject("rejecteditems", rejectedorders);
+		model.setViewName("order/rejectedorderlist.jsp");
 		return model;
 	}
 	

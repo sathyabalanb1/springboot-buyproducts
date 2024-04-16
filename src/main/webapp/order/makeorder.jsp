@@ -12,11 +12,22 @@
 	rel="stylesheet">
 <meta charset="UTF-8">
 <title>Make Order</title>
+<style type="text/css">
+.customerid{
+display:none;
+}
+</style>
+
 </head>
 <body>
+<%@include file="../headerfooter/header.jsp"%>
+
 <span class="error" id="requiredquantityerror" style="color:red;"></span>
 
-<span class="error" id="ordersuccessmessage" style="color:red;"></span>							
+<span class="error" id="ordersuccessmessage" style="color:red;"></span>		
+
+<span class="error" id="emptycheckboxerror" style="color:red;"></span>							
+					
 							
 
 <div class="container mt-4">
@@ -47,19 +58,19 @@
 					<td>
 					<input type="checkbox" name="productid" id="product_${temp.id}" value="${temp.id}">
 					</td>
-					<td><input type="hidden" name="customerid" value="${customerid}" readonly></td>
+					<td class="customerid"><input  type="hidden" name="customerid" value="${customerid}" readonly></td>
 				</tr>
 				</c:forEach>
-				
 				<tr>
-				<td>Make Order</td>
-				<td><input type="submit" id="submitButton" value="Make Order"></td>
+					<td colspan="6"><input class="btn btn-success" type="submit" id="submitButton" value="Make Order"></td>
 				</tr>
 			</tbody>
-		
 		</table>
+			
 </form>
 </div>
+<%@include file="../headerfooter/footer.jsp"%>
+
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="./javascriptfiles/Orderedproducts.js"></script>
